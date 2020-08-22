@@ -23,8 +23,8 @@ function loading_complete(){
 // tweeting quotes
 
 function tweet(){
-    const tweet_quote = quotes.textContent;
-    const tweet_author = author.textContent;
+    const tweet_quote = quotes.innerText;
+    const tweet_author = author.innerText;
     const tweetUrL = `https://twitter.com/intent/tweet?text=${tweet_quote} - ${tweet_author}`;
     window.open(tweetUrL, "_blank");
 }
@@ -40,9 +40,9 @@ async function getQuote(){
         const data = await response.json();
         // If author from api is blank set author as anonymous
         if(data.quoteAuthor === ''){
-            author.textContent = "Anonymous"
+            author.innerText = "Anonymous"
         }else{
-            author.textContent = data.quoteAuthor;
+            author.innerText = data.quoteAuthor;
         }
         // Reduce font size for long quote
         if(data.quoteText.length > 50){
@@ -50,7 +50,7 @@ async function getQuote(){
         }else{
             quotes.classList.remove('long_quote');
         }
-        quotes.textContent = data.quoteText;
+        quotes.innerText = data.quoteText;
         loading_complete();
         // clearing error count
         errorCount = 10;
